@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>mju.lzz</groupId>
+    <artifactId>innovate</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>innovate-web</module>
+        <module>innovate-core</module>
+        <module>innovate-client</module>
+    </modules>
+
+    <properties>
+        <finalName>archetypes</finalName>
+        <warName>${finalName}.war</warName>
+        <warExplodedDirectory>exploded/${warName}</warExplodedDirectory>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <logback.version>1.1.3</logback.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <commons.version>1.2</commons.version>
+        <lombok.version>1.16.4</lombok.version>
+        <spring.version>5.0.6.RELEASE</spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.4</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- archetypes -->
+            <dependency>
+                <groupId>com.vdian</groupId>
+                <artifactId>lzz-server-client</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vdian</groupId>
+                <artifactId>lzz-server-core</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
+
+            <!-- Spring -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mycompany.app</groupId>
+                <artifactId>my-app</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- Velocity -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${velocity.tools.version}</version>
+            </dependency>
+
+            <!-- vmp -->
+            <dependency>
+                <groupId>com.vdian.vmp</groupId>
+                <artifactId>vmp-common</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                    </exclusion>
+                </exclusions>
+                <version>${vmp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vdian.vmp</groupId>
+                <artifactId>vmp-client</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.vdian.vmp</groupId>
+                        <artifactId>vmp-common</artifactId>
+                    </exclusion>
+                </exclusions>
+                <version>${vmp.version}</version>
+            </dependency>
+
+            <!-- vap -->
+            <dependency>
+                <groupId>com.vdian.vap</groupId>
+                <artifactId>vap-client</artifactId>
+                <version>${vap.version}</version>
+            </dependency>
+
+            <!-- hive -->
+            <dependency>
+                <groupId>org.apache.hive</groupId>
+                <artifactId>hive-common</artifactId>
+                <version>${hive.version}</version>
+            </dependency>
+
+            <!-- commons-beanutils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <!-- vsearch-client -->
+            <dependency>
+                <groupId>com.vdian.vsearch</groupId>
+                <artifactId>vsearch-cloud-client</artifactId>
+                <version>${vsearch.version}</version>
+            </dependency>
+
+            <!-- vguard -->
+            <dependency>
+                <groupId>com.vdian.vguard</groupId>
+                <artifactId>vguard-client</artifactId>
+                <version>${vguard.version}</version>
+            </dependency>
+
+            <!-- http client -->
+            <dependency>
+                <groupId>com.vdian.common</groupId>
+                <artifactId>common-http</artifactId>
+                <version>${vdian.http.version}</version>
+            </dependency>
+
+            <!-- vdds -->
+            <dependency>
+                <groupId>com.vdian.vdds</groupId>
+                <artifactId>vdds-engine</artifactId>
+                <version>${vdds.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>vitamin-client</artifactId>
+                        <groupId>com.vdian.vitamin</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- flood -->
+            <dependency>
+                <groupId>com.vdian.flood</groupId>
+                <artifactId>flood-client</artifactId>
+                <version>${flood.version}</version>
+            </dependency>
+
+            <!-- aspect -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspect.version}</version>
+            </dependency>
+
+            <!-- jmonitor -->
+            <dependency>
+                <groupId>com.vdian.monitor</groupId>
+                <artifactId>jmonitor</artifactId>
+                <version>${jmonitor.version}</version>
+            </dependency>
+
+            <!-- json -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- vitamin -->
+            <dependency>
+                <groupId>com.vdian.vitamin</groupId>
+                <artifactId>vitamin-client</artifactId>
+                <version>${vitamin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vdian.vitamin</groupId>
+                <artifactId>vitamin-common</artifactId>
+                <version>${vitamin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.vdian.switcher</groupId>
+                <artifactId>switcher-client</artifactId>
+                <version>${switch.version}</version>
+            </dependency>
+
+            <!-- redis cli -->
+            <dependency>
+                <groupId>com.vdian.redis</groupId>
+                <artifactId>redisCli</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+
+
+            <!-- servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.version}</version>
+            </dependency>
+
+            <!-- ostermillerutils -->
+            <dependency>
+                <groupId>com.ostermiller</groupId>
+                <artifactId>ostermillerutils</artifactId>
+                <version>${ostermiller.version}</version>
+            </dependency>
+
+            <!-- dubbo -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring</artifactId>
+                        <groupId>org.springframework</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- mybatis -->
+            <!-- db conn pool -->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP-java6</artifactId>
+                <version>2.3.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>1.2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.2.8</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.35</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <filters>
+            <filter>../filter.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+</project>
